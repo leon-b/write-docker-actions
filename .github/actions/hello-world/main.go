@@ -1,7 +1,22 @@
-package main
+name: "my hello action"
 
-import "fmt"
+description: "say hello with GitHub Actions"
 
-func main() {
-    fmt.Println("Hello Docker Actions")
-}
+inputs:
+  firstGreeting:
+    description: "who would you like to greet in the console"
+    required: true
+    default: "Hubot"
+
+  secondGreeting:
+    description: "another person to greet"
+    required: true
+    default: "Mona the Octocat"
+
+  thirdGreeting:
+    description: "a third greeting"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
