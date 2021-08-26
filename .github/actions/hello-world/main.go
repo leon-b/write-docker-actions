@@ -1,22 +1,24 @@
-name: "my hello action"
+package main
 
-description: "say hello with GitHub Actions"
+import (
+    "fmt"
+    "os"
+)
 
-inputs:
-  firstGreeting:
-    description: "who would you like to greet in the console"
-    required: true
-    default: "Hubot"
+func main() {
 
-  secondGreeting:
-    description: "another person to greet"
-    required: true
-    default: "Mona the Octocat"
+// Access Inputs as environment vars
+firstGreeting := os.Getenv("INPUT_FIRSTGREETING")
+secondGreeting := os.Getenv("INPUT_SECONDGREETING")
+thirdGreeting := os.Getenv("INPUT_THIRDGREETING")
 
-  thirdGreeting:
-    description: "a third greeting"
-    required: false
+// Use those inputs in the actions logic
+fmt.Println("Hello " + firstGreeting)
+fmt.Println("Hello " + secondGreeting)
 
-runs:
-  using: "docker"
-  image: "Dockerfile"
+// Someimes inputs are not "required" and we can build around that
+if thirdGreeting != "" {
+    fmt.Println("Hello " + thirdGreeting)
+    }
+
+}
